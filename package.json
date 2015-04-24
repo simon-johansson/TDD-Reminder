@@ -1,0 +1,12 @@
+{
+  "name": "nw-demo",
+  "version": "0.0.1",
+  "main": "index.html",
+  "window": {
+    "always-on-top": false,
+    "kiosk": false,
+    "fullscreen": false,
+    "show": false,
+    "show_in_taskbar": false
+  }
+}

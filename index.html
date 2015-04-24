@@ -1,0 +1,52 @@
+<script>
+// Load native UI library
+var gui = require('nw.gui');
+
+var states = [{
+    label: 'Tests have been written and are failing',
+    icon: 'assets/red.png'
+  },{
+    label: 'Implementation was made, tests are passing',
+    icon: 'assets/green.png'
+  },{
+    label: 'Refactoring is done and code is clean',
+    icon: 'assets/blue.png'
+}];
+
+var counter = 1;
+
+// Create a tray icon
+var tray = new gui.Tray({
+  icon: states[0].icon,
+  iconsAreTemplates: false,
+  // click: function () {
+  //   tray.icon = states[counter].icon;
+  //   counter = counter >= states.length - 1 ? 0 : counter + 1;
+  // }
+});
+
+// Give it a menu
+var menu = new gui.Menu();
+
+menu.append(new gui.MenuItem({
+  label: states[0].label,
+  click: function() {
+    tray.icon = states[counter].icon;
+    menu.items[0].label = states[counter].label;
+    counter = counter >= 2 ? 0 : counter + 1;
+  },
+}));
+
+menu.append(new gui.MenuItem({ type: 'separator' }));
+
+menu.append(new gui.MenuItem({
+  label: 'Quit',
+  click: function() {
+    tray.remove();
+    tray = null;
+    gui.App.quit();
+  }
+}));
+
+tray.menu = menu;
+</script>
