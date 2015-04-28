@@ -1,44 +1,34 @@
 <script>
+
 // Load native UI library
 var gui = require('nw.gui');
+var states = require('./states');
 
-var states = [{
-    label: 'Tests have been written and are failing',
-    icon: 'assets/red.png'
-  },{
-    label: 'Implementation was made, tests are passing',
-    icon: 'assets/green.png'
-  },{
-    label: 'Refactoring is done and code is clean',
-    icon: 'assets/blue.png'
-}];
+require('./server');
 
-var counter = 1;
+// gui.Window.get().showDevTools();
+
+var currentIndex = 0;
 
 // Create a tray icon
 var tray = new gui.Tray({
   icon: states[0].icon,
   iconsAreTemplates: false,
   // click: function () {
-  //   tray.icon = states[counter].icon;
-  //   counter = counter >= states.length - 1 ? 0 : counter + 1;
+  //   tray.icon = states[currentIndex].icon;
+  //   currentIndex = currentIndex >= states.length - 1 ? 0 : currentIndex + 1;
   // }
 });
 
 // Give it a menu
 var menu = new gui.Menu();
-
 menu.append(new gui.MenuItem({
   label: states[0].label,
   click: function() {
-    tray.icon = states[counter].icon;
-    menu.items[0].label = states[counter].label;
-    counter = counter >= 2 ? 0 : counter + 1;
+    global.setState();
   },
 }));
-
 menu.append(new gui.MenuItem({ type: 'separator' }));
-
 menu.append(new gui.MenuItem({
   label: 'Quit',
   click: function() {
@@ -47,6 +37,28 @@ menu.append(new gui.MenuItem({
     gui.App.quit();
   }
 }));
-
 tray.menu = menu;
+
+function getIndex (state) {
+  var index;
+  states.forEach(function (el, i) {
+    if (el.phase === state) index = i;
+  });
+  return index;
+}
+
+global.setState = function(state){
+  if (typeof state !== 'undefined') {
+    currentIndex = getIndex(state);
+  } else {
+    currentIndex = currentIndex >= 2 ? 0 : currentIndex + 1;
+  }
+  tray.icon = states[currentIndex].icon;
+  menu.items[0].label = states[currentIndex].label;
+};
+
+global.getState = function () {
+  return states[currentIndex];
+};
+
 </script>
