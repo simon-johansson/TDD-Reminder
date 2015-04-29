@@ -1,14 +1,14 @@
 {
   "main": "index.html",
-  "name": "tdd-helper",
+  "name": "nw-test",
   "description": "test app",
   "window": {
     "title": "My Node-Webkit App",
-    "always-on-top": true,
-    "show": true,
-    "width": 500,
-    "height": 200,
-    "toolbar": true
+    "always-on-top": false,
+    "kiosk": false,
+    "fullscreen": false,
+    "show": false,
+    "show_in_taskbar": false
   },
   "webkit": {
     "plugin": false,
