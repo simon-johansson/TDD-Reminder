@@ -13,6 +13,10 @@ $ cd tdd-helper
 $ /path/to/nw .
 ```
 
+##Change state from REST interface
+The app starts a server (default port is 3000) in the background which accepts POST requests. ...
+
+`curl -H "Content-Type: application/json" -X POST -d '{"state":"refactor"}' http://localhost:3000/
 
 
 
