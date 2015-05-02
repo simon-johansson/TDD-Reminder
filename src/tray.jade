@@ -1,0 +1,29 @@
+html
+  link(href='css/styles.css', rel='stylesheet', type='text/css')
+  script(src='bower_components/jquery/dist/jquery.min.js')
+  body
+    .tray
+
+      header.tray__bar.tray__header
+        p.btn.info Info
+        p TDD Helper
+
+      main.tray__content
+        .phase.phase-red
+          h1.phase-title RED
+          p.phase-description Write a faling unit test
+
+        .phase.phase-green
+          h1.phase-title GREEN
+          p.phase-description Write production code that makes your test pass
+
+        .phase.phase-refactor
+          h1.phase-title REFACTOR
+          p.phase-description Clean up the mess <br> you just made
+
+      footer.tray__bar.tray__footer
+        p.server-address http://localhost:8080
+        p.btn.quit Quit
+
+    script(src='scripts/client/pagetransitions.js')
+    script(src='scripts/client/tray.js')

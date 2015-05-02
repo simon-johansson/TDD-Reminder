@@ -1,9 +1,9 @@
 {
-  "main": "index.html",
-  "name": "nw-test",
-  "description": "test app",
+  "main": "dist/index.html",
+  "name": "",
+  "description": "",
   "window": {
-    "title": "My Node-Webkit App",
+    "title": "",
     "always-on-top": false,
     "kiosk": false,
     "fullscreen": false,
