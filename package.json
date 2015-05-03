@@ -4,7 +4,7 @@
   "description": "",
   "window": {
     "title": "",
-    "always-on-top": true,
+    "always-on-top": false,
     "show": true,
     "width": 500,
     "height": 200,
