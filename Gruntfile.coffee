@@ -24,6 +24,7 @@ module.exports = (grunt)->
       #   src: '<%= watch.test.files %>'
 
     coffee:
+      options: bare: true
       src:
         expand: true
         cwd: 'src/'
@@ -66,19 +67,17 @@ module.exports = (grunt)->
       dist:
         files: [
           {
-            expand: true,
-            cwd: 'src',
-            dest: 'dist/',
+            cwd: './'
+            dest: 'dist/'
+            src: 'package.json'
+          }
+          {
+            expand: true
+            cwd: 'src'
+            dest: 'dist/'
             src: [
               '**/*.png'
               'assets/fonts/**/*'
-              'bower_components/**/*'
-            ]
-          }
-          {
-            dest: 'dist/',
-            src: [
-              'package.json'
               'bower_components/**/*'
             ]
           }
@@ -92,7 +91,10 @@ module.exports = (grunt)->
         tasks: ['coffeelint:gruntfile']
       src:
         files: ['src/**/*.coffee']
-        tasks: ['coffeelint:lib', 'coffee:src']
+        tasks: ['coffeelint:src', 'coffee:src']
+      jade:
+        files: ['src/**/*.jade']
+        tasks: ['jade']
       sass:
         files: ['src/**/*.scss']
         tasks: ['sass:dist']
