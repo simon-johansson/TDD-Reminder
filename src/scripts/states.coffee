@@ -1,17 +1,25 @@
-module.exports = [
+
+states = [
   {
-    label: 'Tests have been written and are failing'
-    icon: 'assets/red.png'
+    icon: 'assets/images/red.png'
     phase: 'red'
   }
   {
-    label: 'Implementation is done, tests are passing'
-    icon: 'assets/green.png'
+    icon: 'assets/images/green.png'
     phase: 'green'
   }
   {
-    label: 'Refactoring has been made, code is clean'
-    icon: 'assets/blue.png'
+    icon: 'assets/images/blue.png'
     phase: 'refactor'
   }
 ]
+
+module.exports =
+  states: states
+  get: (index) -> states[index]
+  getIndex: (state) ->
+    index = undefined
+    states.forEach (el, i) ->
+      if el.phase is state
+        index = i
+    index

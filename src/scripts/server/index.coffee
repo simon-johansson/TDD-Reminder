@@ -3,36 +3,38 @@ path       = require 'path'
 express    = require 'express'
 bodyParser = require 'body-parser'
 
-app    = express()
-router = express.Router()
-port   = process.env.PORT or 3000
+module.exports = (port) ->
 
-app.set 'port', port
-app.use bodyParser.json()
-app.use bodyParser.urlencoded(extended: false)
+  app    = express()
+  router = express.Router()
+  # port   = process.env.PORT or 3000
 
-router.post '/', (req, res, next) ->
-  state = req.body.state
-  if typeof state != 'undefined'
-    if ['red', 'green', 'refactor'].indexOf(state.toLowerCase()) > -1
-      global.setState state
-      res.send "State set to #{state}"
-    else next new Error('Error - possible states are "red", "green" and "refactor"')
-  else next new Error('Error - no state supplied in post body')
+  app.set 'port', port
+  app.use bodyParser.json()
+  app.use bodyParser.urlencoded(extended: false)
 
-app.use '/', router
+  router.post '/', (req, res, next) ->
+    state = req.body.state
+    if typeof state != 'undefined'
+      if ['red', 'green', 'refactor'].indexOf(state.toLowerCase()) > -1
+        global.setPhase state
+        res.send "State set to #{state}"
+      else next new Error('Error - possible states are "red", "green" and "refactor"')
+    else next new Error('Error - no state supplied in post body')
 
-# catch 404 and forward to error handler
-app.use (req, res, next) ->
-  err = new Error('Not Found')
-  err.status = 404
-  next err
+  app.use '/', router
 
-app.use (err, req, res, next) ->
-  res.status err.status or 500
-  res.json
-    message: err.message
-    error: err
+  # catch 404 and forward to error handler
+  app.use (req, res, next) ->
+    err = new Error('Not Found')
+    err.status = 404
+    next err
 
-server = http.createServer(app)
-server.listen port
+  app.use (err, req, res, next) ->
+    res.status err.status or 500
+    res.json
+      message: err.message
+      error: err
+
+  server = http.createServer(app)
+  server.listen port
