@@ -9,9 +9,11 @@
   position: relative;
   width: $tray-width;
   height: $tray-height;
-  -webkit-filter:drop-shadow(0px 1px 8px rgba(0,0,0, 0.4))
+  // -webkit-filter:drop-shadow(0px 1px 8px rgba(0,0,0, 0.4))
+  //                drop-shadow(0px 1px 1px rgba(0,0,0, 0.2));
+  -webkit-filter:drop-shadow(0px 3px 5px rgba(0,0,0, 0.3))
                  drop-shadow(0px 1px 1px rgba(0,0,0, 0.2));
-  border: 1px solid $gray;
+  border: 1px solid $light-gray;
   border-radius: $tray-radius;
   background: $white;
   -webkit-user-select: none;
@@ -89,7 +91,7 @@
       .phase-description {
         color: $white;
         font-size: 22px;
-        font-weight: 400;
+        font-weight: normal;
         margin-top: 15px;
       }
     }
