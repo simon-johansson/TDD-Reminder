@@ -15,7 +15,7 @@ tray = new gui.Tray
 
 trayWindow = gui.Window.open 'tray.html',
   width: 340
-  height: 305
+  height: 240
   frame: no
   toolbar: no
   show: no
