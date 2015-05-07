@@ -3,5 +3,6 @@ builds/
 node_modules/
 bower_components/
 dist/
+cache/
 
 todo.md
