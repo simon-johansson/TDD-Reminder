@@ -90,7 +90,7 @@ module.exports = (grunt)->
         tasks: ['coffeelint:gruntfile']
       scripts:
         files: ['scripts/**/*.coffee']
-        tasks: ['coffeelint:src', 'coffee:src']
+        tasks: ['coffeelint:scripts', 'coffee:scripts']
       jade:
         files: ['markup/**/*.jade']
         tasks: ['jade']
@@ -101,13 +101,27 @@ module.exports = (grunt)->
       #   files: ['test/**/*.coffee']
       #   tasks: ['coffeelint:test']
 
-    clean: ['dist/']
+    clean:
+      compile: ['dist/']
+      build: ['build/']
 
     shell:
       bower_install:
         command: 'bower install'
       npm_install:
         command: 'cd dist && npm install --production && cd -'
+      osx64:
+        command: """
+          cp assets/icons/nw.icns builds/tdd-reminder/osx64/tdd-reminder.app/Contents/Resources/ &&
+          cp -r assets/icons/Icon builds/tdd-reminder/osx64/tdd-reminder.app/Contents/ &&
+          cd builds/tdd-reminder/osx64/ && zip -r tdd-reminder-osx64-v<%= pkg.version %>.zip *.app && cd -
+        """
+      osx32:
+        command: """
+          cp assets/icons/nw.icns builds/tdd-reminder/osx32/tdd-reminder.app/Contents/Resources/ &&
+          cp -r assets/icons/Icon builds/tdd-reminder/osx32/tdd-reminder.app/Contents/
+          cd builds/tdd-reminder/osx32/ && zip -r tdd-reminder-osx32-v<%= pkg.version %>.zip *.app && cd -
+        """
 
     nodewebkit:
       options:
@@ -117,12 +131,13 @@ module.exports = (grunt)->
 
   # tasks.
   grunt.registerTask 'compile', [
-    'clean'
+    'clean:compile'
     'coffee'
     'jade'
     'sass'
     'copy'
-    'shell'
+    'shell:bower_install'
+    'shell:npm_install'
   ]
 
   # grunt.registerTask 'test', [
@@ -132,7 +147,10 @@ module.exports = (grunt)->
 
   grunt.registerTask 'build', [
     'compile'
+    'clean:build'
     'nodewebkit'
+    'shell:osx64'
+    'shell:osx32'
   ]
 
   grunt.registerTask 'default', [
