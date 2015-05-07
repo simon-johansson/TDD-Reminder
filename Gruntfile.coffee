@@ -56,7 +56,7 @@ module.exports = (grunt)->
         sourceMap: true
       dist:
         files:
-          'dist/css/styles.css': 'src/scss/styles.scss'
+          'dist/css/styles.css': 'scss/styles.scss'
 
     # mochaTest:
     #   test:
@@ -110,10 +110,10 @@ module.exports = (grunt)->
         command: 'cd dist && npm install --production && cd -'
 
     nodewebkit:
-        options:
-            platforms: ['osx']
-            buildDir: './builds'
-        src: ['dist/**/*']
+      options:
+        platforms: ['osx']
+        buildDir: './builds'
+      src: ['dist/**/*']
 
   # tasks.
   grunt.registerTask 'compile', [
