@@ -18,18 +18,18 @@ module.exports = (grunt)->
         configFile: 'coffeelint.json'
       gruntfile:
         src: '<%= watch.gruntfile.files %>'
-      src:
-        src: '<%= watch.src.files %>'
+      scripts:
+        src: '<%= watch.scripts.files %>'
       # test:
       #   src: '<%= watch.test.files %>'
 
     coffee:
       options: bare: true
-      src:
+      scripts:
         expand: true
-        cwd: 'src/'
+        cwd: 'scripts/'
         src: ['**/*.coffee']
-        dest: 'dist/'
+        dest: 'dist/scripts'
         ext: '.js'
       # test:
       #   expand: true
@@ -41,11 +41,15 @@ module.exports = (grunt)->
     jade:
       compile:
         options:
-          data:
-            debug: true
-        files:
-          "dist/index.html": "src/index.jade"
-          "dist/tray.html": "src/tray.jade"
+          client: false
+          pretty: true
+        files: [
+          cwd: "markup"
+          src: "**/*.jade"
+          dest: "dist/markup"
+          expand: true
+          ext: ".html"
+        ]
 
     sass:
       options:
@@ -67,18 +71,13 @@ module.exports = (grunt)->
       dist:
         files: [
           {
+            expand: true
             cwd: './'
             dest: 'dist/'
-            src: 'package.json'
-          }
-          {
-            expand: true
-            cwd: 'src'
-            dest: 'dist/'
             src: [
-              '**/*.png'
+              'package.json'
+              'assets/images/**/*.png'
               'assets/fonts/**/*'
-              'bower_components/**/*'
             ]
           }
         ]
@@ -89,14 +88,14 @@ module.exports = (grunt)->
       gruntfile:
         files: 'Gruntfile.coffee'
         tasks: ['coffeelint:gruntfile']
-      src:
-        files: ['src/**/*.coffee']
+      scripts:
+        files: ['scripts/**/*.coffee']
         tasks: ['coffeelint:src', 'coffee:src']
       jade:
-        files: ['src/**/*.jade']
+        files: ['markup/**/*.jade']
         tasks: ['jade']
       sass:
-        files: ['src/**/*.scss']
+        files: ['scss/**/*.scss']
         tasks: ['sass:dist']
       # test:
       #   files: ['test/**/*.coffee']
@@ -105,8 +104,16 @@ module.exports = (grunt)->
     clean: ['dist/']
 
     shell:
-      install:
+      bower_install:
+        command: 'bower install'
+      npm_install:
         command: 'cd dist && npm install --production && cd -'
+
+    nodewebkit:
+        options:
+            platforms: ['osx']
+            buildDir: './builds'
+        src: ['dist/**/*']
 
   # tasks.
   grunt.registerTask 'compile', [
@@ -122,6 +129,11 @@ module.exports = (grunt)->
   #   'coffeelint'
   #   'mochaTest'
   # ]
+
+  grunt.registerTask 'build', [
+    'compile'
+    'nodewebkit'
+  ]
 
   grunt.registerTask 'default', [
     # 'test'
