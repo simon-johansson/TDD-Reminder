@@ -35,10 +35,19 @@
       margin: 10px auto;
       color: $gray;
 
-      &.server-address {
+      &.server-address,
+      &.version {
         @extend %small;
+      }
+
+      &.server-address {
         float: left;
         margin: 12px;
+      }
+
+      &.version {
+        position:: absolute;
+        right: 12px;
       }
     }
   }

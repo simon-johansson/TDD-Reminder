@@ -4,6 +4,7 @@ states = require '../scripts/states.js'
 
 port   = process.env.TDD_REMINDER_PORT or 22789
 require('../scripts/server')(port)
+version = require('../package.json').version
 
 win             = gui.Window.get()
 trayWindowShown = no
@@ -24,7 +25,7 @@ trayWindow = gui.Window.open 'tray.html',
   'visible-on-all-workspaces': yes
 
 trayWindow.on 'loaded', ->
-  trayWindow.window.connectToParent win, port
+  trayWindow.window.connectToParent win, port, version
 trayWindow.on 'focus', ->
   trayWindowShown = yes
 trayWindow.on 'blur', ->
