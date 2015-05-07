@@ -1,14 +1,14 @@
 {
-  "main": "index.html",
-  "name": "tdd-helper",
-  "description": "",
+  "main": "markup/index.html",
+  "name": "tdd-reminder",
+  "description": "OSX status bar application to help you stick to the test-driven development cycle red-green-refactor",
   "window": {
-    "title": "",
+    "title": "TDD Reminder",
     "always-on-top": false,
-    "show": true,
-    "width": 500,
-    "height": 200,
-    "toolbar": true
+    "kiosk": false,
+    "fullscreen": false,
+    "show": false,
+    "show_in_taskbar": false
   },
   "webkit": {
     "plugin": false,
@@ -29,6 +29,7 @@
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-jade": "^0.14.1",
     "grunt-contrib-watch": "~0.5.3",
+    "grunt-node-webkit-builder": "^1.0.2",
     "grunt-sass": "^0.18.1",
     "grunt-shell": "^1.1.2",
     "load-grunt-tasks": "^3.1.0"
