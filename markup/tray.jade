@@ -1,12 +1,12 @@
 html
-  link(href='css/styles.css', rel='stylesheet', type='text/css')
-  script(src='bower_components/jquery/dist/jquery.min.js')
+  link(href='../css/styles.css', rel='stylesheet', type='text/css')
+  script(src='../bower_components/jquery/dist/jquery.min.js')
   body
     .tray
 
       header.tray__bar.tray__header
         p.btn.info Info
-        p TDD Helper
+        p TDD Reminder
 
       main.tray__content
         .phase.phase-red.current
@@ -22,8 +22,8 @@ html
           p.phase-description Clean up the mess <br> you just made
 
       footer.tray__bar.tray__footer
-        p.server-address http://localhost:8080
+        p.server-address
         p.btn.quit Quit
 
-    script(src='scripts/transitions.js')
-    script(src='scripts/tray.js')
+    script(src='../scripts/transitions.js')
+    script(src='../scripts/tray.js')

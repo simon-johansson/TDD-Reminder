@@ -1,9 +1,9 @@
 
 gui    = require 'nw.gui'
-states = require './scripts/states.js'
+states = require '../scripts/states.js'
 
-port = 6789
-require('./scripts/server')(port)
+port   = process.env.TDD_REMINDER_PORT or 22789
+require('../scripts/server')(port)
 
 win             = gui.Window.get()
 trayWindowShown = no

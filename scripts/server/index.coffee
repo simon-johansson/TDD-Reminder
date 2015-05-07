@@ -7,7 +7,6 @@ module.exports = (port) ->
 
   app    = express()
   router = express.Router()
-  # port   = process.env.PORT or 3000
 
   app.set 'port', port
   app.use bodyParser.json()
