@@ -1,0 +1,148 @@
+
+.tray {
+  @extend %default-font;
+
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: $tray-width;
+  height: $tray-height;
+  // -webkit-filter:drop-shadow(0px 1px 8px rgba(0,0,0, 0.4))
+  //                drop-shadow(0px 1px 1px rgba(0,0,0, 0.2));
+  -webkit-filter:drop-shadow(0px 3px 5px rgba(0,0,0, 0.3))
+                 drop-shadow(0px 1px 1px rgba(0,0,0, 0.2));
+  border: 1px solid $light-gray;
+  border-radius: $tray-radius;
+  background: $white;
+  -webkit-user-select: none;
+  user-select: none;
+
+  // Don't show the text cursor on text
+  // Keep in mind that you have to add `cursor: pointer` to all clickable items
+  cursor: default;
+
+  &__bar {
+    @extend %text-shadow;
+    display: flex;
+    flex-direction: row;
+    flex: 0 1 auto;
+    border-radius: inherit;
+    background: linear-gradient(to bottom, $white, $lighter-gray);
+
+    p {
+      margin: 10px auto;
+      color: $gray;
+
+      &.server-address,
+      &.version {
+        @extend %small;
+      }
+
+      &.server-address {
+        float: left;
+        margin: 12px;
+      }
+
+      &.version {
+        position:: absolute;
+        right: 12px;
+      }
+    }
+  }
+
+   &__header {
+    height: $tray-header-height;
+    border-bottom: 1px solid $light-gray;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__footer {
+    height: $tray-footer-height;
+    border-top: 1px solid $light-gray;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &__content {
+    position: relative;
+    flex: 1 1 auto;
+    padding: .5em;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    .phase {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+      overflow: hidden;
+
+      &.current {
+        visibility: visible;
+        z-index: 1;
+      }
+
+      &.ontop {
+        z-index: 999;
+      }
+
+      .phase-title {
+        margin-top: 15px;
+      }
+
+      .phase-description {
+        color: $white;
+        font-size: 22px;
+        font-weight: normal;
+        margin-top: 15px;
+      }
+    }
+
+    .phase-red {
+      background: $red;
+
+      h1 {
+        color: $dark-red;
+        margin-bottom: 20px;
+      }
+    }
+
+    .phase-green {
+      background: $green;
+
+      h1 {
+        color: $dark-green;
+        margin-bottom: 0;
+      }
+    }
+
+    .phase-refactor {
+      background: $blue;
+
+      h1 {
+        color: $dark-blue;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &::after {
+    position: absolute;
+    content:'';
+    top: -($tray-triangle-height);
+    left: $tray-width/2 - $tray-triangle-width/2;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 $tray-triangle-width/2 $tray-triangle-height $tray-triangle-width/2;
+    border-color: transparent transparent $white transparent;
+  }
+
+}

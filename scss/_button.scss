@@ -1,0 +1,19 @@
+
+.btn {
+  margin: 8px !important;
+  position: absolute;
+  border: 1px solid $light-gray;
+  padding: 2px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten($light-gray, 50%);
+  }
+  &.quit {
+    right: 0;
+  }
+  &.info {
+    left: 0;
+  }
+}
