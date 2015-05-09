@@ -1,10 +1,12 @@
 # TDD Reminder
 
+<img src="assets/icons/icon_128x128.png" alt="TDD Reminder icon" align="right" />
+<!-- <img src="assets/icons/icon_256x256.png" alt="TDD Reminder icon" align="right" /> -->
+
 > OSX status bar application to help you stick to the test-driven development cycle *red-green-refactor*
 
 Made with <3 and [nw.js](http://nwjs.io/).
 
-## Starting the app
 **TDD Reminder** shows up as a colord dot in your status bar, reminding you of what phase in the *red-green-refactor* cycle you are currently in.
 
 ![Tray icon](promo/tray.png)
@@ -51,11 +53,6 @@ $ curl -H "Content-Type: application/json" -X POST -d '{"state":"refactor"}' htt
 var request = require('request');
 request.post('http://localhost:22789', {form: {state:'green'}});
 ```
-
-##Change state from REST interface
-The app starts a server (default port is 3000) in the background which accepts POST requests. ...
-
-`curl -H "Content-Type: application/json" -X POST -d '{"state":"refactor"}' http://localhost:3000/
 
 You could for example set up your test runner to change the phase to "green" if you have a failing test (which would mean that you should write production code to make that test pass). Or change the phase to "refactor" if all your tests are passing.
 
