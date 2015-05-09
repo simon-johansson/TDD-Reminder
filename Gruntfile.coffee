@@ -110,18 +110,18 @@ module.exports = (grunt)->
         command: 'bower install'
       npm_install:
         command: 'cd dist && npm install --production && cd -'
+
+      osx: (bits) ->
+        """
+          cp assets/icons/nw.icns builds/tdd-reminder/osx#{bits}/tdd-reminder.app/Contents/Resources/
+          cp -r assets/icons/Icon builds/tdd-reminder/osx#{bits}/tdd-reminder.app/Contents/
+          cd builds/tdd-reminder/osx#{bits}/ && mv tdd-reminder.app 'TDD Reminder.app'
+          zip -r tdd-reminder-osx#{bits}-v<%= pkg.version %>.zip *.app && cd -
+        """
       osx64:
-        command: """
-          cp assets/icons/nw.icns builds/tdd-reminder/osx64/tdd-reminder.app/Contents/Resources/ &&
-          cp -r assets/icons/Icon builds/tdd-reminder/osx64/tdd-reminder.app/Contents/ &&
-          cd builds/tdd-reminder/osx64/ && zip -r tdd-reminder-osx64-v<%= pkg.version %>.zip *.app && cd -
-        """
+        command: "<%= shell.osx('64') %>"
       osx32:
-        command: """
-          cp assets/icons/nw.icns builds/tdd-reminder/osx32/tdd-reminder.app/Contents/Resources/ &&
-          cp -r assets/icons/Icon builds/tdd-reminder/osx32/tdd-reminder.app/Contents/
-          cd builds/tdd-reminder/osx32/ && zip -r tdd-reminder-osx32-v<%= pkg.version %>.zip *.app && cd -
-        """
+        command: "<%= shell.osx('32') %>"
 
     nodewebkit:
       options:
