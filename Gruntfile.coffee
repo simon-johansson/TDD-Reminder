@@ -113,8 +113,6 @@ module.exports = (grunt)->
 
       osx: (bits) ->
         """
-          cp assets/icons/nw.icns builds/tdd-reminder/osx#{bits}/tdd-reminder.app/Contents/Resources/
-          cp -r assets/icons/Icon builds/tdd-reminder/osx#{bits}/tdd-reminder.app/Contents/
           cd builds/tdd-reminder/osx#{bits}/ && mv tdd-reminder.app 'TDD Reminder.app'
           zip -r tdd-reminder-osx#{bits}-v<%= pkg.version %>.zip *.app && cd -
         """
@@ -125,8 +123,10 @@ module.exports = (grunt)->
 
     nodewebkit:
       options:
+        version: '0.12.1',
         platforms: ['osx']
         buildDir: './builds'
+        macIcns: './assets/icons/nw.icns'
       src: ['dist/**/*']
 
   # tasks.
