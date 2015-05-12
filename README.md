@@ -1,6 +1,5 @@
 # TDD Reminder
 
-<!-- <img src="assets/icons/icon_128x128.png" alt="TDD Reminder icon" align="right" /> -->
 <img src="assets/icons/icon_256x256.png" alt="TDD Reminder icon" height="200" align="right" />
 
 > OS X status bar application to help you stick to the test-driven development cycle *red-green-refactor*
@@ -27,7 +26,10 @@ Dot                       | What you should be doing
 2. Click on the dot, this will open the **TDD Reminder** window.
 3. Click somewhere inside the coloured box, this will move you to the next phase and change the color of the dot. Repeat step one.
 
-![Demo of transitions](promo/demo.gif)
+<p align="center">
+<br>
+  <img src="promo/demo.gif" alt="Demo of phase transitions" />
+</p>
 
 ## Why?
 Sticking to the [laws of TDD](http://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html) isn’t always trivial for a number of different reasons. With lacking motivation and discipline it´s easy to start skipping or prolonging phases, maybe in the hopes of progressing faster. Without a reminder from time to time one might take the laws for granted and become too lenient, blurring the lines between the different phases.
@@ -69,6 +71,9 @@ Specify a custom port by setting the environment variable ``TDD_REMINDER_PORT``.
 ```bash
 export TDD_REMINDER_PORT="3456"
 ```
+
+## Feedback
+Please send me a [mail](mailto:mail@simon-johansson.com) or raise an issue here on GitHub if you have any feedback, suggestions or comments. I would love to hear about your experience with the app. Did it help you? If so, why or why not? Pull requests are also very much appreciated.
 
 ## License
 
