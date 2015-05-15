@@ -1,7 +1,7 @@
 {
   "main": "markup/index.html",
   "name": "tdd-reminder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OSX status bar application to help you stick to the test-driven development cycle red-green-refactor",
   "window": {
     "title": "TDD Reminder",
