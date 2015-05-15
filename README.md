@@ -17,7 +17,7 @@ Unsure of what you should be doing? Just have a peak at the status bar.
 
 Dot                       | What you should be doing
 ------------------------- | ---------------------------------------------
-![](promo/red_dot.png)    | Write a faling unit test
+![](promo/red_dot.png)    | Create a unit tests that fails
 ![](promo/green_dot.png)  | Write production code that makes your test pass
 ![](promo/blue_dot.png)   | Clean up the mess you just made
 
